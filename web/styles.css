@@ -1,0 +1,105 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F5F5F5; /* Light Gray background */
+    color: #333;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4169E1; /* Royal Blue */
+    padding: 20px;
+    color: white;
+}
+header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+.menu-icon {
+    display: block;
+    cursor: pointer;
+    margin-right: 20px;
+}
+.menu-icon div {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0;
+}
+
+/* Поисковая строка */
+.search-container {
+    flex-grow: 1;
+    text-align: center;
+}
+.search-container input[type="text"] {
+    padding: 10px;
+    width: 300px;
+    border: none;
+    border-radius: 5px;
+    margin: 0 10px;
+}
+.search-container button {
+    padding: 10px 15px;
+    background-color: #FF6F61; /* Coral */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.search-container button:hover {
+    background-color: #E65C50;
+}
+
+/* Скрытое меню */
+.side-menu {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0; /* Меню теперь появляется слева */
+    background-color: lightgray;  /* Темно-серый */
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+.side-menu a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 1.5em;
+    color: black; /* Цвет текста */
+    display: block;
+    transition: 0.3s;
+}
+.side-menu a:hover {
+    background-color: #A9A9A9;/* Цвет фона при наведении */
+}
+.side-menu .close-btn {
+    position: absolute;
+    top: 10px;
+    left: 25px;
+    font-size: 2em;
+}
+
+/* Футер */
+footer {
+    background-color: #4169E1; /* Royal Blue */
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+}
+footer p {
+    margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .products {
+        flex-direction: column;
+        align-items: center;
+    }
+}

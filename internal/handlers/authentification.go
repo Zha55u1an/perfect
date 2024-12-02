@@ -12,8 +12,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// Login обрабатывает POST запрос для аутентификации пользователя
-// PATH: go-auth/controllers/auth.go
 var jwtKey = []byte("jwtkey_go_project")
 
 func Login(c *gin.Context) {
@@ -64,7 +62,6 @@ func Login(c *gin.Context) {
 	c.JSON(200, gin.H{"success": "user logged in"})
 }
 
-// PATH: go-auth/controllers/auth.go
 
 func Signup(c *gin.Context) {
 	var user models.User
@@ -91,13 +88,14 @@ func Signup(c *gin.Context) {
 		return
 	}
 
+	user.Role = "user"
+
 	db.DB.Create(&user)
 
 	c.JSON(200, gin.H{"success": "user created"})
 }
 
-// Logout обрабатывает POST запрос для выхода пользователя из системы
-// PATH: go-auth/controllers/auth.go
+
 
 func Logout(c *gin.Context) {
 	c.SetCookie("token", "", -1, "/", "localhost", false, true)

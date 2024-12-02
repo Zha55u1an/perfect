@@ -41,7 +41,6 @@ func (repo *OrderRepository) GetOrderByID(c *gin.Context) {
 }
 
 // CreateOrder handles POST request to create a new order
-// CreateOrder handles POST request to create a new order
 func (repo *OrderRepository) CreateOrder(c *gin.Context) {
 	var orderItems []models.OrderItem
 
@@ -54,42 +53,36 @@ func (repo *OrderRepository) CreateOrder(c *gin.Context) {
 
 	order := models.Order{
 		UserID: userID.(uint),
-		// CreatedAt:  time.Now(),
+		
 		Status: "created",
 	}
 	result := repo.db.Create(&order)
 	if result.Error != nil {
-		// Выводим ошибку в консоль
+		
 		fmt.Println("Error creating order:", result.Error.Error())
-		// Возвращаем ошибку в ответе сервера
+		
 		c.JSON(http.StatusInternalServerError, gin.H{"error LLL": result.Error.Error()})
 		return
 	}
-	// Создаем заказы на основе полученных данных
+
 	for _, item := range orderItems {
-		// Создаем новый заказ для каждого элемента
-
-		// Создаем заказ в базе данных
-
-		// Получаем orderID после создания заказа
 		orderID := order.ID
 
-		// Привязываем каждый OrderItem к orderID
 		item.OrderID = orderID
 		result = repo.db.Create(&item)
 		if result.Error != nil {
-			// Выводим ошибку в консоль
+			
 			fmt.Println("Error creating order item:", result.Error.Error())
-			// Возвращаем ошибку в ответе сервера
+			
 			c.JSON(http.StatusInternalServerError, gin.H{"error MMM": result.Error.Error()})
 			return
 		}
 
-		// Обновляем статус заказа на "created"
+		
 		repo.db.Model(&order).Update("status", "created")
 	}
 
-	// Возвращаем ответ с информацией о заказах
+	
 	c.JSON(http.StatusCreated, gin.H{
 		"message": "Orders created successfully",
 	})
